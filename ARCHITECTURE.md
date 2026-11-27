@@ -2,8 +2,8 @@
 
 **Site:** https://quantum.phys.uni-sofia.bg
 **Owner:** Катедра „Квантова електроника“, Физически факултет, СУ „Св. Климент Охридски“
-**Status:** Phase 0 implemented (repository skeleton, CI, staging preview). Hosting details pending sysadmin answers (§16).
-**Revision:** 3 (see §18)
+**Status:** Phase 0 implemented; phase 2 (migration) in progress — courses migrated. Hosting details pending sysadmin answers (§16).
+**Revision:** 4 (see §18)
 
 ---
 
@@ -120,6 +120,8 @@ quantum-site/
 
 There is **no `.htaccess`** in the repository; Apache ignores it anyway (`AllowOverride None`).
 
+`migration/` holds the content inventory (documentation only). The migration scripts themselves are **not** in the repository — they are Python and the file policy (§11.1) forbids executable files outside `scripts/*.sh` and `server/*.sh`. They live in the maintainer's project folder (`_tools/migrate/`) next to the legacy mirror.
+
 Templates follow the Hugo ≥ 0.146 layout: `layouts/baseof.html`, `home.html`, `section.html`, `page.html`, per-section overrides (`layouts/people/page.html`, …), partials in `layouts/_partials/`.
 
 ## 7. Content model
@@ -144,23 +146,34 @@ links:
 weight: 30                         # ordering on the staff page
 active: true                       # false → listed under former staff
 ```
-Body: biography, selected publications.
+Body: biography, selected publications. Publications are listed with DOI links; publisher PDFs are not re-hosted (§10).
+
+Former staff and defended PhDs are **plain lists in `people/_index.md`**, not person files. A former member gets a person file (`active: false`) only when there is content for it (e.g. a memorial page, a publication list).
 
 ### 7.2 Course — `content/<lang>/courses/<slug>.md`
 
 ```yaml
 title: "Матрична оптика"
-lecturers: ["gaydardzhiev"]        # references to person slugs
+lecturers: ["gaydardzhiev"]        # person file names; Pages CMS may store paths — templates use path.BaseName
+external_lecturers: []             # free text, lecturers without a person file (other departments, former staff)
+level: "bachelor"                  # bachelor / master
 programme: ["Фотоника и лазерна физика"]
-course_type: "избираема"           # задължителна / избираема / факултативна
-semester: "зимен"
-ects: 0
+course_type: "задължителна"        # задължителна / избираема / факултативна (EN: compulsory / elective / optional)
+semester: "VI"                     # Roman numeral; electives may be "VI или VIII"
+hours:                             # contact hours: lectures + seminars + labs
+  lectures: 30
+  seminars: 0
+  labs: 0
+ects: 2.0
+assessment: "текуща оценка"        # изпит / текуща оценка (EN: exam / continuous assessment)
 materials:
   - title: "Лекция 1 — Лъчева матрица"
     file: "/materials/gaydardzhiev/matrix-optics-lecture-01.pdf"
     date: 2026-10-01
 ```
-Body: syllabus, assessment, literature.
+Body (BG): the syllabus as `##` sections — Анотация, Предварителни изисквания, Програма на курса, Форма на контрол, Литература; last line: author and date of the syllabus.
+
+EN course files carry the same front matter with translated values and no body until translated; the page then links to the Bulgarian syllabus (§8).
 
 `type` is a reserved Hugo front-matter key (it selects the layout), so the course kind is stored as `course_type`.
 
@@ -187,16 +200,19 @@ image: ""
 
 About, history, education programmes, contact: single Markdown pages, editable in Pages CMS as single files.
 
+**Archive** (`about/archive.md`): legacy material that is no longer current (UFNO 2009, MSc programme 2003–2006, advertising leaflets, ELI-BG 2007–08) gets a one-line entry each; attached PDFs are kept only if < 3 MB.
+
 ## 8. Internationalization
 
 - Hugo multilingual with `contentDir` per language: `content/bg` (default, `/`) and `content/en` (`/en/`).
 - Translations linked by identical relative path.
 - UI strings in `i18n/bg.toml` / `i18n/en.toml`; `hreflang` emitted automatically.
 - English may lag behind Bulgarian; untranslated pages show no language switch.
+- Minimum English coverage: history, people, labs, research, course list. English course pages have front matter only (title, lecturers, level, semester, hours, ECTS) and link to the Bulgarian syllabus until a translation is added.
 
 ## 9. Pages CMS configuration (sketch)
 
-Field option syntax must be verified against https://pagescms.org/docs at implementation time.
+Field syntax checked against https://pagescms.org/docs (Nov 2026): `select` uses `options.values` (strings or `{name, label}`), `options.multiple`; `number` has `options.min` / `options.max`, decimals allowed; `object` nests `fields`, `list: true` makes it repeatable; `reference` uses `options.collection`, `options.multiple` and an `options.value` template (`{path}`, `{name}`, …); `rich-text` has `options.format: markdown | html` with no documented default — **always set `format: markdown`**, because raw HTML in Markdown is not rendered (§11.1). Still to verify in the phase 3 pilot: what `value: "{name}"` stores (with or without `.md`); templates accept both.
 
 ```yaml
 media:
@@ -229,19 +245,44 @@ content:
       - { name: email, label: Email, type: string }
       - { name: research_interests, label: Научни интереси, type: string, list: true }
       - { name: active, label: Активен, type: boolean, default: true }
-      - { name: body, label: Биография, type: rich-text }
+      - { name: body, label: Биография, type: rich-text, options: { format: markdown } }
 
   - name: courses-bg
     label: Курсове (BG)
     type: collection
     path: content/bg/courses
+    view:
+      fields: [title, level, semester]
     fields:
       - { name: title, label: Наименование, type: string, required: true }
       - name: lecturers
         label: Преподаватели
         type: reference
-        list: true
-        options: { collection: people-bg }
+        options: { collection: people-bg, multiple: true, value: "{name}", label: "{title}" }
+      - { name: external_lecturers, label: Други преподаватели, type: string, list: true }
+      - name: level
+        label: Степен
+        type: select
+        options:
+          values: [{ name: bachelor, label: Бакалавър }, { name: master, label: Магистър }]
+      - { name: programme, label: Програма, type: string, list: true }
+      - name: course_type
+        label: Вид
+        type: select
+        options: { values: [задължителна, избираема, факултативна] }
+      - { name: semester, label: Семестър, type: string }
+      - name: hours
+        label: Хорариум
+        type: object
+        fields:
+          - { name: lectures, label: Лекции, type: number, options: { min: 0 } }
+          - { name: seminars, label: Семинарни, type: number, options: { min: 0 } }
+          - { name: labs, label: Практически, type: number, options: { min: 0 } }
+      - { name: ects, label: ECTS, type: number, options: { min: 0 } }
+      - name: assessment
+        label: Форма на контрол
+        type: select
+        options: { values: [изпит, текуща оценка] }
       - name: materials
         label: Материали
         type: object
@@ -250,7 +291,7 @@ content:
           - { name: title, label: Заглавие, type: string }
           - { name: file, label: Файл, type: file, options: { media: materials } }
           - { name: date, label: Дата, type: date }
-      - { name: body, label: Описание, type: rich-text }
+      - { name: body, label: Учебна програма, type: rich-text, options: { format: markdown } }
 
   - name: news-bg
     label: Новини (BG)
@@ -260,7 +301,7 @@ content:
       - { name: title, label: Заглавие, type: string }
       - { name: date, label: Дата, type: date }
       - { name: summary, label: Резюме, type: text }
-      - { name: body, label: Текст, type: rich-text }
+      - { name: body, label: Текст, type: rich-text, options: { format: markdown } }
 
   # ... same collections for EN, plus research, education and single pages
 ```
@@ -276,6 +317,7 @@ The `extensions` lists are a UI convenience only. **Enforcement happens in CI** 
 | Video | Preferably external links (YouTube / Moodle). Short optimized clips allowed: mp4/webm, ≤ 25 MB |
 | Repository budget | Keep total < 1 GB; GitHub hard limit is 100 MB per file |
 | Naming | lowercase, Latin, hyphens: `matrix-optics-lecture-01.pdf` |
+| Publications | Listed with DOI links. Publisher PDFs of papers are **not** re-hosted (copyright); only files the authors may share (talks, preprints, theses) |
 | Not allowed | html, htm, svg, js, php, sh, exe, `.htaccess`, any other type not on the allowlist; symlinks |
 
 If the repository approaches its budget, move old course materials to a yearly archive folder on the faculty server and link to them.
@@ -490,7 +532,7 @@ Email sent to the faculty sysadmin (Nov 2026) proposing the static approach (ins
 |---|---|
 | 0 — Setup | Repo (`SashoG/quantum-site`), Hugo skeleton, CI with file checks, staging preview — **done** (Rev 3) |
 | 1 — Design | Custom responsive theme; home, people, courses, news layouts |
-| 2 — Migration | Mirror of the old site (done), per-file encoding detection (UTF-8 / cp1251 / cp1252 — **not** a blanket `iconv -f cp1251`, see `migration/content-inventory.md` §5), HTML → Markdown with Claude Code, map to content model per `migration/inventory.csv` |
+| 2 — Migration | **In progress** — courses done (40 BG + 40 EN). Mirror of the old site (done), per-file encoding detection (UTF-8 / cp1251 / cp1252 — **not** a blanket `iconv -f cp1251`, see `migration/content-inventory.md` §5), HTML → Markdown with Claude Code, map to content model per `migration/inventory.csv` |
 | 3 — CMS | `.pages.yml`, invite 1–2 pilot lecturers, adjust forms |
 | 4 — Server | Sysadmin answers, vhost fragment applied, deploy script + cron, HTTPS, go-live |
 | 5 — Onboarding | Invite all lecturers, one-page how-to with screenshots; inform department head about Pages CMS data handling |
@@ -498,6 +540,7 @@ Email sent to the faculty sysadmin (Nov 2026) proposing the static approach (ins
 
 ## 18. Revision history
 
+- **Rev 4** — Migration decisions D2–D6 (`migration/content-inventory.md` §7) accepted: former staff and PhD alumni as lists (§7.1), publications by DOI without re-hosting publisher PDFs (§7.1, §10), `external_lecturers` free-text field (§7.2), archive page entries (§7.5), minimum EN coverage with front-matter-only course pages (§8). Course model extended: `level`, `semester`, `hours` (lectures/seminars/labs), `ects` (number), `assessment` (§7.2). Pages CMS sketch checked against current docs: `reference` uses `options.multiple` (not `list`), `rich-text` must set `format: markdown` (§9). Migration scripts kept outside the repository (§6). 40 courses migrated.
 - **Rev 3** — Phase 0 implemented. Repository initially under the maintainer's account `SashoG/quantum-site` (public), transfer to a department organization later (§2, §15). Staging preview on GitHub Pages, `noindex` (§2, §4). Workflow renamed to `build.yml`; no third-party actions, Hugo 0.170.1 downloaded and SHA-256-verified, first-party actions pinned by SHA (§11.2). File policy check extended to `content/`, `assets/images/`, rest of `static/` and to the build output; raw HTML in Markdown disabled (§11.1). Course field `type` renamed to `course_type` (reserved in Hugo, §7.2). SVG removed from the Pages CMS images media (§9). `server-pull.sh` fixed: explicit fetch into `origin/deploy`, deployed-commit state file, `.well-known/` kept on clean (§11.3). Legacy video (≈ 374 MB) not migrated into the repository, decision pending (§10, §16). Phase 2: content inventory added (`migration/`), per-file encoding rule replaces blanket cp1251 conversion (§17).
 - **Rev 2** — Apache confirmed; `.htaccess` dropped in favour of vhost-only config (`AllowOverride None`); full Apache reference fragment (caching, security headers, static-only execution policy); expanded security model incl. same-site subdomain risks, symlinks, CI allowlist; Pages CMS hosting and data location documented; short optimized video allowed; cron fallbacks; sysadmin question status.
 - **Rev 1** — Initial architecture: Hugo + GitHub + Pages CMS + pull deploy.

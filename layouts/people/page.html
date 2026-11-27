@@ -28,7 +28,11 @@
   {{ .Content }}
 
   {{- /* Lecturer's personal space: every course that lists this person. */}}
-  {{- $courses := where (where site.RegularPages "Section" "courses") "Params.lecturers" "intersect" (slice $slug) }}
+  {{- $courses := slice }}
+  {{- range where site.RegularPages "Section" "courses" }}
+    {{- $c := . }}
+    {{- range .Params.lecturers }}{{ if eq (path.BaseName .) $slug }}{{ $courses = $courses | append $c }}{{ end }}{{ end }}
+  {{- end }}
   {{- with $courses }}
   <h2>{{ i18n "courses" }}</h2>
   <ul class="card-list">

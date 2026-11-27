@@ -2,21 +2,30 @@
 <article class="course">
   <h1>{{ .Title }}</h1>
   <dl class="meta">
-    {{- with .Params.lecturers }}
+    {{- if or .Params.lecturers .Params.external_lecturers }}
     <dt>{{ i18n "lecturers" }}</dt>
-    <dd>
-      {{- range $i, $slug := . }}{{ if $i }}, {{ end }}
-        {{- with site.GetPage (printf "/people/%s" $slug) }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ else }}{{ $slug }}{{ end }}
-      {{- end }}
-    </dd>
+    <dd>{{ partial "course-lecturers.html" . }}</dd>
     {{- end }}
+    {{ with .Params.level }}<dt>{{ i18n "level" }}</dt><dd>{{ i18n (printf "level_%s" .) }}</dd>{{ end }}
     {{ with .Params.programme }}<dt>{{ i18n "programme" }}</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
     {{ with .Params.course_type }}<dt>{{ i18n "course_type" }}</dt><dd>{{ . }}</dd>{{ end }}
     {{ with .Params.semester }}<dt>{{ i18n "semester" }}</dt><dd>{{ . }}</dd>{{ end }}
-    {{ with .Params.ects }}<dt>ECTS</dt><dd>{{ . }}</dd>{{ end }}
+    {{- with .Params.hours }}
+    {{- $total := add (add (.lectures | default 0) (.seminars | default 0)) (.labs | default 0) }}
+    <dt>{{ i18n "hours" }}</dt>
+    <dd>{{ .lectures | default 0 }} + {{ .seminars | default 0 }} + {{ .labs | default 0 }} = {{ $total }} <span class="muted">({{ i18n "hours_legend" }})</span></dd>
+    {{- end }}
+    {{ with .Params.ects }}<dt>ECTS</dt><dd>{{ lang.FormatNumber 1 . }}</dd>{{ end }}
+    {{ with .Params.assessment }}<dt>{{ i18n "assessment" }}</dt><dd>{{ . }}</dd>{{ end }}
   </dl>
 
+  {{- if .Content }}
   {{ .Content }}
+  {{- else }}
+    {{- range .Translations }}
+  <p class="muted">{{ i18n "syllabus_in_other_language" }} <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}" lang="{{ .Language.Lang }}">{{ .Language.Label }}</a>.</p>
+    {{- end }}
+  {{- end }}
 
   {{- with .Params.materials }}
   <h2>{{ i18n "materials" }}</h2>

@@ -154,11 +154,13 @@ Source HTML: hand-written HTML 4, FrontPage and Word exports (`mso-*` styles, `*
 3. **Missing from the mirror** (38 links, probably dead on the live site too): 16 pages of the 2003–2006 LFO programme (`Programs/MS/LFO/UPRG/*`), 8 UFNO 2009 sub-pages, 9 `.avi` animations in `dreischuh/`, 3 PDFs in `saltiel/`, 2 handouts in `Programs/Handouts/`, 1 ELI-BG PDF.
 4. Contact data on the old home page: address бул. „Джеймс Баучер“ 5, 1164 София; fax; webmaster e-mail — confirm for `contact.md`.
 
-## 7. Decisions needed
+## 7. Decisions
 
-| # | Question | Options | Recommendation |
+D2–D6 accepted as recommended on 2026-11-27 (ARCHITECTURE.md rev 4). D1 open.
+
+| # | Question | Options | Decision |
 |---|---|---|---|
-| D1 | Legacy video (8 clips, 374 MB in 3 formats) | YouTube channel (separate task) · archive on the faculty server (§16 #4) · mp4 in the repo (2 clips exceed 25 MB, need re-encoding) | Wait for the YouTube decision; keep only mp4 (all current browsers play it); 2 clips (`stoyan2`, `stoyan3`) are not linked anywhere |
+| D1 (open) | Legacy video (8 clips, 374 MB in 3 formats) | YouTube channel (separate task) · archive on the faculty server (§16 #4) · mp4 in the repo (2 clips exceed 25 MB, need re-encoding) | Wait for the YouTube decision; keep only mp4 (all current browsers play it); 2 clips (`stoyan2`, `stoyan3`) are not linked anywhere |
 | D2 | Former staff (29) and defended PhDs (47) | Lists in `people/_index.md` · one person file each (`active: false`) | Lists; person files only where there is content (Saltiel, Stamenov) |
 | D3 | Personal sites and 258 paper PDFs (194 MB) | Re-host PDFs · link by DOI · keep the publication lists only | Publication lists with DOI links; do not re-host publisher PDFs (copyright). Keep only files the authors may share (talks, preprints). Needs agreement from Prof. Dreischuh and Assoc. Prof. Stoyanov; Saltiel = memorial page |
 | D4 | Course lecturers outside the department | Person file for each · free-text field | Optional free-text field `external_lecturers` on courses (content model change, §7.2) |
@@ -167,8 +169,8 @@ Source HTML: hand-written HTML 4, FrontPage and Word exports (`mso-*` styles, `*
 
 ## 8. Migration order
 
-1. Script `scripts/migrate/` (local only, not run in CI): decode per §5, strip Word/FrontPage markup, HTML → Markdown, write front matter.
-2. People (after the staff check) → courses (40, generated from §3) → education pages → research → about.
+1. Scripts in `_tools/migrate/` of the maintainer's project folder — **not** in the repository (the file policy forbids `.py`): decode per §5, strip Word/FrontPage markup, HTML → Markdown, write front matter. Done for courses: `migrate_courses.py <mirror> <repo>` (`--check` = dry run).
+2. ~~Courses (40 BG + 40 EN, §3)~~ **done** → people (after the staff check, §6.1) → education pages → research → about.
 3. Materials: the legacy site has almost no course materials (one PDF in `Programs/BS/MISC/`, handouts missing); lecturers upload them via Pages CMS (phase 3).
 4. Images: `fslab/` and `InMemoriam/ks.jpg` → `assets/images/`; gif decorations dropped.
 5. After each step: `hugo` build, `check-files.sh`, review on the staging preview.

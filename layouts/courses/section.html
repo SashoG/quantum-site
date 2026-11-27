@@ -1,0 +1,31 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ .Content }}
+{{- range $level := slice "bachelor" "master" }}
+  {{- with where $.Pages "Params.level" $level }}
+<section class="course-group">
+  <h2>{{ i18n (printf "level_%s" $level) }}</h2>
+  <table class="course-table">
+    <thead>
+      <tr>
+        <th scope="col">{{ i18n "course" }}</th>
+        <th scope="col">{{ i18n "lecturers" }}</th>
+        <th scope="col">{{ i18n "semester" }}</th>
+        <th scope="col">ECTS</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{- range .ByTitle }}
+      <tr>
+        <td><a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ with .Params.course_type }} <span class="muted">· {{ . }}</span>{{ end }}</td>
+        <td>{{ partial "course-lecturers.html" . }}</td>
+        <td>{{ .Params.semester }}</td>
+        <td>{{ with .Params.ects }}{{ lang.FormatNumber 1 . }}{{ end }}</td>
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+</section>
+  {{- end }}
+{{- end }}
+{{ end }}

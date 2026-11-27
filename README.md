@@ -24,8 +24,9 @@ Design decisions and the security model are in [ARCHITECTURE.md](ARCHITECTURE.md
 - **Person** `content/<lang>/people/<slug>.md` — `title`, `position`, `degree`, `photo`, `email`, `office`, `phone`,
   `research_interests`, `links.scholar`, `links.orcid`, `weight`, `active`.
   The file name (`<slug>`) is the key used by courses.
-- **Course** `content/<lang>/courses/<slug>.md` — `title`, `lecturers` (person slugs), `programme`, `course_type`,
-  `semester`, `ects`, `materials` (`title`, `file`, `date`).
+- **Course** `content/<lang>/courses/<slug>.md` — `title`, `lecturers` (person slugs), `external_lecturers` (free text),
+  `level` (bachelor/master), `programme`, `course_type`, `semester`, `hours` (`lectures`, `seminars`, `labs`), `ects`,
+  `assessment`, `materials` (`title`, `file`, `date`). EN course files: front matter only until translated.
   Note: `type` is reserved by Hugo (it selects the layout) — use `course_type`.
 - **News** `content/<lang>/news/<yyyy-mm-dd>-<slug>.md` — `title`, `date`, `summary`, `image`.
 

@@ -1,0 +1,19 @@
+{{- /*
+  Lecturers of a course: person pages (`lecturers`) + free-text `external_lecturers`.
+  `lecturers` entries may be slugs ("gaydardzhiev") or paths written by Pages CMS
+  ("content/bg/people/gaydardzhiev.md"); path.BaseName normalizes both.
+  Usage: partial "course-lecturers.html" .
+*/ -}}
+{{- $out := slice }}
+{{- range .Params.lecturers }}
+  {{- with site.GetPage (printf "/people/%s" (path.BaseName .)) }}
+    {{- $out = $out | append (printf "<a href=\"%s\">%s</a>" .RelPermalink (.Title | htmlEscape)) }}
+  {{- else }}
+    {{- warnf "course %q: no person page for lecturer %q" $.File.Path . }}
+    {{- $out = $out | append (. | htmlEscape) }}
+  {{- end }}
+{{- end }}
+{{- range .Params.external_lecturers }}
+  {{- $out = $out | append (. | htmlEscape) }}
+{{- end }}
+{{- delimit $out ", " | safeHTML -}}

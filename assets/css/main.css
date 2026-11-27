@@ -149,3 +149,15 @@ main.container { padding-block: calc(var(--space) * 2); min-height: 60vh; }
 .site-footer { border-top: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-muted); font-size: 0.9rem; }
 .site-footer .container { padding-block: var(--space); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space); }
 .site-footer p { margin: 0; }
+
+/* Course lists */
+.course-group { margin-block: calc(var(--space) * 2); }
+.course-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.course-table th, .course-table td { text-align: left; vertical-align: top; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--color-border); }
+.course-table th { font-weight: 600; background: var(--color-surface); }
+.course-table td:nth-child(3), .course-table td:nth-child(4) { white-space: nowrap; }
+@media (max-width: 40rem) {
+  .course-table thead { display: none; }
+  .course-table tr { display: block; padding-block: 0.5rem; border-bottom: 1px solid var(--color-border); }
+  .course-table td { display: block; border: 0; padding: 0.1rem 0; }
+}
