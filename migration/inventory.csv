@@ -1,0 +1,225 @@
+old,title,lang,encoding,chars,target,action,note
+ELI-BG/ELI-BG-web.html,ELI-Bulgaria-web,en,cp1251,1262,content/en/research/projects.md (ELI-BG section) or archive,convert,2007–2008 material
+InMemoriam/Auditorium_K.Stamenov.html,Auditorium Konstantin Stamenov,bg,cp1251,1844,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/Gencho_Danev.html,"From Dr. Gencho Danev""",bg,cp1251,1368,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/Georgi_Petrov.html,"From Dr. Georgi Petrov""",en,utf-8,873,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/ILC-MGU.html,"From Prof. Gordienko V. M.""",en,utf-8,594,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/InMemoriam.html,Konstantin Stamenov - In Memoriam,bg,cp1251,1621,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/Ivan_Milev.html,From Dr. Ivan Milev,en,utf-8,1527,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/MargaritaAndValentinMitevi.html,From Margarita And Valentin Mitevi,en,cp1251,460,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/Mariana_Sendova.html,"From Dr. Mariana Sendova""",en,utf-8,743,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/Metevi.html,From Krassimira & Simeon Metevi,en,utf-8,681,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/MilkoIliev.html,From Milko Iliev,en,utf-8,528,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/RAN.html,"From IPLIT - RAS""",bg,cp1251,1030,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/Stamen_Dimov.html,From Dr. Stamen Dimov,en,utf-8,438,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/Stankov.html,Krassimir Stankov - ALPHALAS GmbH,bg,cp1251,1770,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/Stoyan_Dinev.html,"From Prof. Stoyan Dinev""",en,utf-8 (meta says windows-1251),783,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/VadimVeiko.html,From Vadim Veiko,en,utf-8,599,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/Valentin_Zhelyaskov.html,"From Dr. Valentin Zhelyaskov""",en,utf-8,771,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/Velko_Tzolov.html,From Dr. Velko Tzolov,en,utf-8,669,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/foundation/dariteli0105.html,Memorial Fund Donators,bg,cp1251,922,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+InMemoriam/foundation/stamenov0105.html,Memorial Fund - General Information,bg,cp1251,3428,content/en/about/in-memoriam-stamenov.md,convert,"merge memorial, condolences and memorial fund pages into one page"
+LINKS/index.html,LINKS,en,utf-8 (meta says windows-1251),80,-,drop,near-empty page
+Programs/BS/EngPhys/UP-2.HTML,"Блок КВАНТОВА ЕЛЕКТРОНИКА И ЛАЗЕРНА ТЕХНИКА: Бакалавър, Инж. Физика, Редовно обучение",bg,utf-8,3162,content/bg/education/bachelor-engineering-physics-qe-block.md,convert,
+Programs/BS/Phys/UP-2.HTML,"Блок ЛАЗЕРНА ФИЗИКА: Бакалавър, Физика, Редовно обучение Редовно обучение",bg,utf-8,3083,content/bg/education/bachelor-physics-laser-block.md,convert,
+Programs/MS/KELT-2.HTML,"МАГИСТЪРСКА ПРОГРАМА ПО ""КВАНТОВА ЕЛЕКТРОНИКА И ЛАЗЕРНА ТЕХНИКА""",bg,utf-8,1682,content/bg/education/master-quantum-electronics-laser-technology.md,convert,merge programme description + curriculum
+Programs/MS/LFO/MS2004/MS2004.HTML,"МАГИСТЪРСКА ПРОГРАМА ""ЛАЗЕРНА ФИЗИКА И ОПТИКА""",bg,cp1251,5972,content/bg/about/archive.md (entry),archive,legacy programme 2003–2006; many linked pages missing
+Programs/MS/LFO/UPMLFO.HTML,"УЧЕБЕН ПЛАН МАГИСТЪР ПО ФИЗИКА ""ЛАЗЕРНА ФИЗИКА И ОПТИКА""",bg,cp1251,2474,content/bg/about/archive.md (entry),archive,legacy programme 2003–2006; many linked pages missing
+Programs/MS/LFO/fotonicStructures/KONSPEKT 2003.html,,en,cp1251,10531,content/bg/about/archive.md (entry),archive,legacy programme 2003–2006; many linked pages missing
+Programs/MS/REFS/LMDK.HTML,"ЛИТЕРАТУРА КЪМ КУРСА ""ЛАЗЕРНИ МЕТОДИ ЗА ДИАГНОСТИКА И КОНТРОЛ""",bg,cp1251,431,content/bg/about/archive.md (entry),archive,legacy programme 2003–2006; many linked pages missing
+Programs/MS/UPMKELT-2.HTML,"УЧЕБЕН ПЛАН: МАГИСТЪР ПО ИНЖЕНЕРНА ФИЗИКА ""КВАНТОВА ЕЛЕКТРОНИКА И ЛАЗЕРНА ТЕХНИКА""",bg,utf-8,3516,content/bg/education/master-quantum-electronics-laser-technology.md,convert,merge programme description + curriculum
+Programs/MS/UPRG-2/DNVL.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ДИОДНО НАПОМВАНИ И ВЛАКНЕСТИ ЛАЗЕРИ""",bg,utf-8,3516,content/bg/courses/diode-pumped-fiber-lasers.md,convert,lecturer: buchvarov; hours 45 + 0 + 0 = 45 часа; ECTS -
+Programs/MS/UPRG-2/FMOP.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ФИЗИКА НА МОЩНИТЕ ОПТИЧНИ ПОЛЕТА""",bg,utf-8,2256,content/bg/courses/high-intensity-optical-fields.md,convert,lecturer: dimitrov; hours 45 + 0 + 0 = 45 часа; ECTS -
+Programs/MS/UPRG-2/FOLT.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ФИЗИЧНИ ОСНОВИ НА ЛАЗЕРНИТЕ ТЕХНОЛОГИИ""",bg,utf-8,4798,content/bg/courses/physical-fundamentals-laser-technologies.md,convert,lecturer: gaydardzhiev; hours 45 + 15 + 0 = 60 часа; ECTS -
+Programs/MS/UPRG-2/FS.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ФОТОННИ СТРУКТУРИ""",bg,utf-8,3604,content/bg/courses/photonic-structures.md,convert,lecturer: zhekova; hours 45 + 0 + 0 = 45; ECTS -
+Programs/MS/UPRG-2/IPLL.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ИЗМЕРВАНЕ НА ПАРАМЕТРИТЕ НА ЛАЗЕРНОТО ЛЪЧЕНИЕ""",bg,utf-8,4001,content/bg/courses/laser-beam-parameter-measurement.md,convert,lecturer: gaydardzhiev; hours 30 + 0 + 15 = 45 часа; ECTS -
+Programs/MS/UPRG-2/LMDK.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ЛАЗЕРНИ МЕТОДИ ЗА ДИАГНОСТИКА И КОНТРОЛ""",bg,utf-8,4647,content/bg/courses/laser-diagnostics-control.md,convert,lecturer: stoyanov; hours 45 + 0 + 0 = 45 часа; ECTS -
+Programs/MS/UPRG-2/LS.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ЛАЗЕРНА СПЕКТРОСКОПИЯ""",bg,utf-8,4852,content/bg/courses/laser-spectroscopy.md,convert,lecturer: zhekova; hours 60 + 0 + 0 = 60 часа; ECTS -
+Programs/MS/UPRG-2/LT2.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ЛАЗЕРНА ТЕХНИКА II ЧАСТ""",bg,utf-8,6184,content/bg/courses/laser-technique-2.md,convert,lecturer: stoyanov; hours 45 + 0 + 45 = 90 часа; ECTS -
+Programs/MS/UPRG-2/MTTL.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""МОЩНИ ТВЪРДОТЕЛНИ ЛАЗЕРИ""",bg,utf-8,12712,content/bg/courses/high-power-solid-state-lasers.md,convert,lecturer: gorunski; hours 45 + 0 + 0 = 45 часа; ECTS -
+Programs/MS/UPRG-2/NLOVS.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""НЕЛИНЕЙНИ ОПТИЧНИ ВЪЛНИ И СОЛИТОНИ""",bg,utf-8,10226,content/bg/courses/nonlinear-optical-waves-solitons.md,convert,lecturer: dreischuh; hours 60 + 15 + 0 = 75 часа; ECTS -
+Programs/MS/UPRG-2/OKM.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ОПТИЧНИ КОМУНИКАЦИОННИ МРЕЖИ""",bg,utf-8,7790,content/bg/courses/optical-communication-networks.md,convert,lecturer: gorunski; hours 45 + 0 + 0 = 45 часа; ECTS -
+Programs/MS/UPRG-2/OPU.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ОПТИЧНИ ПАРАМЕТРИЧНИ УСТРОЙСТВА""",bg,utf-8,4568,content/bg/courses/optical-parametric-devices.md,convert,lecturer: gaydardzhiev; hours 45 + 0 + 0 = 45 часа; ECTS -
+Programs/MS/UPRG-2/PNO.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ПРИЛОЖНА НЕЛИНЕЙНА ОПТИКА""",bg,utf-8,3989,content/bg/courses/applied-nonlinear-optics.md,convert,lecturer: buchvarov; hours 60 + 15 + 0 = 75 часа; ECTS -
+Programs/MS/UPRG-2/PO.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ПОЛЯРИЗАЦИОННА ОПТИКА""",bg,utf-8,4663,content/bg/courses/polarization-optics.md,convert,lecturer: gorunski; hours 45 + 0 + 0 = 45 часа; ECTS -
+Programs/MS/UPRG-2/VKO.HTML,"УЧЕБНА ПРОГРАМА НА КУРСА ""ВЪЛНОВА И КВАНТОВА ОПТИКА""",bg,utf-8,3151,content/bg/courses/wave-quantum-optics.md,convert,lecturer: christov; hours 90 + 0 + 0 = 90 часа; ECTS -
+Programs/UPS-2.HTML,Учебни планове: бакалавър и магистър,bg,utf-8,1902,content/bg/education/_index.md,convert,
+UFNO2009/Programme.htm,UFNO’2009,en,cp1251,8289,content/en/news/2009-09-14-ufno-2009.md,archive,conference 2009; most sub-pages missing; keep programme as PDF or text
+UFNO2009/REGISTRATION.htm,REGISTRATION,en,cp1251,375,content/en/news/2009-09-14-ufno-2009.md,archive,conference 2009; most sub-pages missing; keep programme as PDF or text
+UFNO2009/Second_call_for_papers.htm,Call for Papers,en,cp1251,610,content/en/news/2009-09-14-ufno-2009.md,archive,conference 2009; most sub-pages missing; keep programme as PDF or text
+UFNO2009/TRANSPORTATION.htm,TRANSPORTATION,en,cp1251,457,content/en/news/2009-09-14-ufno-2009.md,archive,conference 2009; most sub-pages missing; keep programme as PDF or text
+UFNO2009/index.html,UFNO'09 (9.14-18),en,cp1251,316,content/en/news/2009-09-14-ufno-2009.md,archive,conference 2009; most sub-pages missing; keep programme as PDF or text
+archive.html,Archive,en,utf-8,271,content/en/about/archive.md,convert,
+bul/archive.html,Архив,bg,utf-8,548,content/bg/about/archive.md,convert,
+bul/collaborators.html,Международно сътрудничество на катедра Квантова електроника,bg,utf-8,530,content/bg/research/collaborations.md,convert,
+bul/home.html,"Катедра ""Квантова електроника""",bg,utf-8,222,"layouts (header/nav), content/{bg,en}/contact.md",drop,"frameset/navigation; keep address, e-mail, QR code idea"
+bul/intro.html,История на катедрата,bg,utf-8,2200,content/bg/about/history.md,convert,
+bul/links.html,Полезни връзки,bg,utf-8,1976,content/bg/about/links.md,convert,check external links
+bul/menu.html,Меню: кат. Квантова електроника,bg,utf-8,154,"layouts (header/nav), content/{bg,en}/contact.md",drop,"frameset/navigation; keep address, e-mail, QR code idea"
+bul/projects.html,Проекти на катедрата,bg,utf-8,4358,content/bg/research/projects.md,convert,
+bul/publications.html,Публикации на членовете на катедрата,bg,utf-8,2006,content/bg/research/publications.md,convert,
+bul/researchlabs.html,Научно-изследователски лаборатории и групи към катедрата,bg,utf-8,265,content/bg/research/_index.md,convert,
+bul/staff.html,Състав на катедрата,bg,utf-8,2550,"content/bg/people/<slug>.md (9 current) + content/bg/people/_index.md (former staff, PhD alumni)",convert,verify list with the department; commented-out entries in source
+collaborators.html,ACTIVE INTERNATIONAL COLLABORATIONS of the Department of Quantum Electronics,en,utf-8,525,content/en/research/collaborations.md,convert,
+courses-en.html,Courses in the department,en,utf-8,1846,content/en/courses/_index.md + EN course pages,convert,lecturers differ from BG syllabi — verify
+dreischuh/abstr1.htm,,en,utf-8,538,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr10.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr11.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr12.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr13.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr14.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr15.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr16.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr17.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr18.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr19.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr2.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr20.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr21.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr22.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr23.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr24.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr25.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr26.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr27.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr28.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr29.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr3.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr30.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr31.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr32.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr33.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr34.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr35.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr36.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr37.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr38.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr39.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr4.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr40.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr41.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr42.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr43.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr44.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr45.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr46.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr47.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr48.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr49.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr5.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr50.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr51.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr52.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr53.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr55.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr56.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr57.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr58.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr59.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr6.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr60.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr61.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr62.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr63.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr64.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr65.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr66.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr67.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr68.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr69.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr7.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr70.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr71.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr72.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr73.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr74.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr75.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr76.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr77.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr78.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr79.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr8.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr80.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr81.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr82.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr83.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr84.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr85.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr86.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr87.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr88.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr89.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr9.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr90.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr91.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr92.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr93.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr94.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr95.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr96.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr97.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr98.htm,,,not scanned,,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/abstr99.htm,,en,utf-8,1222,-,decide,abstract pages of papers → DOI links (D3)
+dreischuh/index.html,Alexander Dreischuh's home site,en,utf-8 (meta says windows-1251),64042,content/en/people/dreischuh.md body (publications),convert,"personal site, 64k chars; decision D3"
+fotonika.html,Фотоника и лазерна физика,bg,utf-8,13686,content/bg/education/photonics-laser-physics.md,convert,curriculum tables per year → Markdown tables linking course pages
+fslab/index.html,ЛАБОРАТОРИЯ ПО ФЕМТОСЕКУНДНА ФОТОНИКА,bg,utf-8,5602,content/bg/research/femtosecond-photonics.md,convert,merge index/team/projects into one lab page; images → assets/images/research/
+fslab/index_en.html,LABORATORY OF FEMTOSECOND PHOTONICS,en,utf-8,4945,content/en/research/femtosecond-photonics.md,convert,merge index/team/projects into one lab page; images → assets/images/research/
+fslab/projects.html,ЛАБОРАТОРИЯ ПО ФЕМТОСЕКУНДНА ФОТОНИКА,bg,utf-8,4651,content/bg/research/femtosecond-photonics.md,convert,merge index/team/projects into one lab page; images → assets/images/research/
+fslab/projects_en.html,LABORATORY OF FEMTOSECOND PHOTONICS,en,utf-8,4452,content/en/research/femtosecond-photonics.md,convert,merge index/team/projects into one lab page; images → assets/images/research/
+fslab/team.html,ЛАБОРАТОРИЯ ПО ФЕМТОСЕКУНДНА ФОТОНИКА,bg,utf-8,779,content/bg/research/femtosecond-photonics.md,convert,merge index/team/projects into one lab page; images → assets/images/research/
+fslab/team_en.html,LABORATORY OF FEMTOSECOND PHOTONICS,en,utf-8,769,content/en/research/femtosecond-photonics.md,convert,merge index/team/projects into one lab page; images → assets/images/research/
+homedept.html,Department of Quantum Electronics,en,utf-8,182,"layouts (header/nav), content/{bg,en}/contact.md",drop,"frameset/navigation; keep address, e-mail, QR code idea"
+index-bg.html,"Катедра ""Квантова електроника""",bg,utf-8,205,"layouts (header/nav), content/{bg,en}/contact.md",drop,"frameset/navigation; keep address, e-mail, QR code idea"
+index-en.html,The Department of Quantum Electronics,en,utf-8,204,"layouts (header/nav), content/{bg,en}/contact.md",drop,"frameset/navigation; keep address, e-mail, QR code idea"
+index.html,"Катедра ""Квантова електроника""",bg,utf-8,205,"layouts (header/nav), content/{bg,en}/contact.md",drop,"frameset/navigation; keep address, e-mail, QR code idea"
+intro.html,History of the department,en,utf-8,2035,content/en/about/history.md,convert,
+links.html,Links,en,utf-8,1288,content/en/about/links.md,convert,check external links
+lstoyanov/index.html,СПИСЪК НА ПУБЛИКАЦИИТЕ,en,cp1252,24335,"content/{bg,en}/people/stoyanov.md body (publications)",convert,cp1252 accents
+menu-en.html,Menu: Quantum Electronics,en,utf-8,116,"layouts (header/nav), content/{bg,en}/contact.md",drop,"frameset/navigation; keep address, e-mail, QR code idea"
+photonics/AV/Dreischuh-2.html,"Видео клип: Учебна лаборатория ""Физика на лазерите""",bg,utf-8,255,content/bg/education/photonics-laser-physics.md (multimedia section),pending,video decision (§10)
+photonics/AV/Hristiyan1-2.html,"Видео клип: Учебна лаборатория ""Физична оптика"" (част 1)",bg,utf-8,251,content/bg/education/photonics-laser-physics.md (multimedia section),pending,video decision (§10)
+photonics/AV/Hristiyan2-2.html,"Видео клип: Учебна лаборатория ""Физична оптика"" (част 2)",bg,utf-8,251,content/bg/education/photonics-laser-physics.md (multimedia section),pending,video decision (§10)
+photonics/AV/Lambrev-2.html,Видео клип: Лаборатория по лазерна техника,bg,utf-8,246,content/bg/education/photonics-laser-physics.md (multimedia section),pending,video decision (§10)
+photonics/AV/av-2.html,Аудио/видео клипове,bg,utf-8,602,content/bg/education/photonics-laser-physics.md (multimedia section),pending,video decision (§10)
+photonics/AV/buchvarov-2.html,"Видео клип: ""Лаборатория по лазерна физика и нелинейна оптика""",bg,utf-8,264,content/bg/education/photonics-laser-physics.md (multimedia section),pending,video decision (§10)
+photonics/AV/stoyan1-2.html,"Видео клип: Учебна лаборатория ""Лазерна техника"" (част 1)",bg,utf-8,252,content/bg/education/photonics-laser-physics.md (multimedia section),pending,video decision (§10)
+photonics/AV/stoyan2-2.html,,,not scanned,,content/bg/education/photonics-laser-physics.md (multimedia section),pending,video decision (§10)
+photonics/AV/stoyan3-2.html,,,not scanned,,content/bg/education/photonics-laser-physics.md (multimedia section),pending,video decision (§10)
+photonics/Lasers/index.html,Интересно...,bg,utf-8,851,content/bg/education/lasers-reading.md,convert,check copyright of linked PDFs
+photonics/programs/amsvrs-H149.html,"Учебна програма на курса ""Атомна и молекулна спектроскопия с висока разделителна способност""",bg,utf-8,3373,content/bg/courses/high-resolution-atomic-molecular-spectroscopy.md,convert,"lecturer: pashov*; hours 30 + 0 + 15 = 45 часа; ECTS 3,5"
+photonics/programs/ef-H014.html,"Учебна програма на курса ""Експериментална фотоника""",bg,utf-8,4440,content/bg/courses/experimental-photonics.md,convert,"lecturer: stoyanov; hours 45 + 0 + 45 = 90 часа; ECTS 7,0"
+photonics/programs/fvus.html,"Учебна програма на курса ""Фотоволтаични устройства и системи""",bg,cp1251,4974,content/bg/courses/photovoltaic-devices-systems.md,convert,"lecturer: buchvarov; hours 45 + 15 + 0 = 60 часа; ECTS 4,0"
+photonics/programs/km-H152.html,"Учебна програма на курса ""Компютърно моделиране""",bg,utf-8,2276,content/bg/courses/computer-modelling.md,convert,"lecturer: yordanova*; hours 15 + 0 + 30 = 45 часа; ECTS 4,0"
+photonics/programs/kmo-H145.html,"Учебна програма на курса ""Компютърни методи в оптиката""",bg,utf-8,4190,content/bg/courses/computational-methods-optics.md,convert,"lecturer: gaydardzhiev; hours 15 + 0 + 30 = 45 часа; ECTS 4,0"
+photonics/programs/labview-H144.html,"Учебна програма на курса ""Увод в системата за управление на експеримента LabView""",bg,utf-8,4556,content/bg/courses/labview-experiment-control.md,convert,"lecturer: dimitrov; hours 45 + 0 + 0 = 45 часа; ECTS 3,0"
+photonics/programs/lf_o-H040.html,"Учебна програма на курса ""Лазерна физика: основи""",bg,utf-8,6266,content/bg/courses/laser-physics-fundamentals.md,convert,"lecturer: dreischuh; hours 45 + 0 + 0 = 45 часа; ECTS 3,0"
+photonics/programs/lf_vl-H039.html,"Учебна програма на курса ""Лазерна физика: Видове лазери""",bg,utf-8,7295,content/bg/courses/laser-physics-laser-sources.md,convert,"lecturer: dreischuh; hours 30 + 0 + 45 = 75 часа; ECTS 7,0"
+photonics/programs/lt1-H038.html,"Учебна програма на курса ""Лазерна техника 1""",bg,utf-8,11332,content/bg/courses/laser-technique-1.md,convert,"lecturer: stoyanov; hours 45 + 0 + 45 = 90 часа; ECTS 7,0"
+photonics/programs/lt1_l-H038.html,"Учебна програма на курса ""Лазерна техника 1""",bg,utf-8,10762,content/bg/courses/laser-technique-1.md,convert,"lecturer: stoyanov; hours 45 + 0 + 0 = 45 часа; ECTS 3,0 — merge with lt1-H038"
+photonics/programs/lt1_p-H038.html,"Учебна програма на курса ""Лазерна техника 1 - практикум""",bg,utf-8,2217,content/bg/courses/laser-technique-1-lab.md,convert,"lecturer: stoyanov; hours 0 + 0 + 45 = 45 часа; ECTS 4,5"
+photonics/programs/mo-H050.html,"Учебна програма на курса ""Матрична оптика""",bg,utf-8,3918,content/bg/courses/matrix-optics.md,convert,"lecturer: gaydardzhiev; hours 30 + 0 + 0 = 30 часа; ECTS 2,0"
+photonics/programs/mo_p-E344.html,"Учебна програма на курса ""Матрична оптика – лабораторен практикум""",bg,utf-8,2305,content/bg/courses/matrix-optics-lab.md,convert,"lecturer: gorunski; hours 0 + 0 + 30 = 30 часа; ECTS 3,0"
+photonics/programs/oa-H147.html,"Учебна програма на курса ""Основи на акустиката""",bg,utf-8,3986,content/bg/courses/acoustics-fundamentals.md,convert,"lecturer: aleksieva*; hours 30 + 0 + 0 = 30 часа; ECTS 2,0"
+photonics/programs/oeio-H076.html,"Учебна програма на курса ""Оптоелектроника и интегрална оптика""",bg,utf-8,6571,content/bg/courses/optoelectronics-integrated-optics.md,convert,"lecturer: zhekova; hours 60 + 0 + 30 = 90 часа; ECTS 6,5"
+photonics/programs/ono-H086.html,"Учебна програма на курса ""Основи на нелинейната оптика""",bg,utf-8,4106,content/bg/courses/nonlinear-optics-fundamentals.md,convert,"lecturer: stoyanov; hours 60 + 0 + 0 = 60 часа; ECTS 4,5"
+photonics/programs/ooe-H148.html,"Учебна програма на курса ""Органична оптоелектроника""",bg,utf-8,4063,content/bg/courses/organic-optoelectronics.md,convert,"lecturer: baluschev*; hours 45 + 0 + 0 = 45 часа; ECTS 3,0"
+photonics/programs/ooi.html,"Учебна програма на курса ""Оптична обработка на информация""",bg,cp1251,4717,content/bg/courses/optical-information-processing.md,convert,"lecturer: buchvarov; hours 45 + 15 + 0 = 60 часа; ECTS 4,5"
+photonics/programs/ovlns-H073.html,"Учебна програма на курса ""Оптични вълни в линейни и нелинейни среди""",bg,utf-8,7825,content/bg/courses/optical-waves-linear-nonlinear-media.md,convert,"lecturer: dreischuh; hours 60 + 0 + 0 = 60 часа; ECTS 4,0"
+photonics/programs/plm-H089.html,"Учебна програма на курса ""Приложение на лазерите в медицината""",bg,utf-8,7799,content/bg/courses/lasers-in-medicine.md,convert,"lecturer: dimitrov; hours 45 + 0 + 0 = 45 часа; ECTS 3,0"
+photonics/programs/sntp-H146.html,"Учебна програма на курса ""Спектроскопия на нискотемпературна плазма""",bg,utf-8,3944,content/bg/courses/low-temperature-plasma-spectroscopy.md,convert,"lecturer: yordanova*; hours 45 + 0 + 0 = 45 часа; ECTS 3,0"
+photonics/programs/sou-H096.html,"Учебна програма на курса ""Спектрални оптични уреди""",bg,utf-8,3612,content/bg/courses/spectral-optical-instruments.md,convert,"lecturer: pashov*; hours 30 + 0 + 15 = 45 часа; ECTS 3,5"
+photonics/programs/tpl-H109.html,"Учебна програма на курса ""Технологични приложения на лазерите""",bg,utf-8,5290,content/bg/courses/technological-applications-lasers.md,convert,"lecturer: gaydardzhiev; hours 30 + 0 + 30 = 60 часа; ECTS 4,0"
+photonics/programs/uoou1-H116.html,"Учебна програма на курса ""Увод в оптиката и оптичните уреди – част 1""",bg,utf-8,3845,content/bg/courses/introduction-optics-instruments-1.md,convert,"lecturer: gorunski; hours 30 + 0 + 0 = 30 часа; ECTS 2,0"
+photonics/programs/uoou2-H117.html,"Учебна програма на курса ""Увод в оптиката и оптичните уреди – част 2""",bg,utf-8,3090,content/bg/courses/introduction-optics-instruments-2.md,convert,"lecturer: gorunski; hours 15 + 15 + 30 = 60 часа; ECTS 4,5"
+photonics/programs/zul-H150.html,"Учебна програма на курса ""Захранващи устройства за лазери""",bg,utf-8,7372,content/bg/courses/laser-power-supplies.md,convert,"lecturer: gorunski; hours 45 + 0 + 0 = 45 часа; ECTS 3,0"
+projectsdept.html,Projects at the department,en,utf-8,3319,content/en/research/projects.md,convert,
+publicationsdept.html,Publications of the Department of Quantum Electronics,en,utf-8,2236,content/en/research/publications.md,convert,
+researchlabs.html,Research & Development Labs and Groups,en,utf-8,234,content/en/research/_index.md,convert,
+saltiel/before1993.html,Saltiel Publications before1993,en,cp1252,9224,"content/en/people/saltiel.md (former staff, active: false)",convert,personal site; publication PDFs → decision D3
+saltiel/collab.html,COLLABORATIONS,en,cp1252,22694,"content/en/people/saltiel.md (former staff, active: false)",convert,personal site; publication PDFs → decision D3
+saltiel/contact.html,,en,utf-8 (meta says windows-1252),542,"content/en/people/saltiel.md (former staff, active: false)",convert,personal site; publication PDFs → decision D3
+saltiel/curr.html,HOME * COLLABORATIONS * CURRICULUM VITAE PUPLICATIONS * FULL LIST * PUPLICATIONS BY SUBJECT,en,cp1252,9223,"content/en/people/saltiel.md (former staff, active: false)",convert,personal site; publication PDFs → decision D3
+saltiel/home.html,Prof. Solomon Saltiel,en,cp1252,430,"content/en/people/saltiel.md (former staff, active: false)",convert,personal site; publication PDFs → decision D3
+saltiel/pubfull.html,Publications Saltiel,en,cp1252,39683,"content/en/people/saltiel.md (former staff, active: false)",convert,personal site; publication PDFs → decision D3
+saltiel/teaching.html,Prof. Solomon Saltiel,bg,cp1252,194,"content/en/people/saltiel.md (former staff, active: false)",convert,personal site; publication PDFs → decision D3
+staff.html,Staff of the department,en,utf-8,2853,"content/en/people/<slug>.md (9 current) + content/en/people/_index.md (former staff, PhD alumni)",convert,verify list with the department; commented-out entries in source

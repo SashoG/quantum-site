@@ -2,8 +2,8 @@
 
 **Site:** https://quantum.phys.uni-sofia.bg
 **Owner:** Катедра „Квантова електроника“, Физически факултет, СУ „Св. Климент Охридски“
-**Status:** Design agreed internally — Hugo + Pages CMS + GitHub + static hosting on the Faculty of Physics server (Apache). Hosting details pending sysadmin answers (§16).
-**Revision:** 2 (see §18)
+**Status:** Phase 0 implemented (repository skeleton, CI, staging preview). Hosting details pending sysadmin answers (§16).
+**Revision:** 3 (see §18)
 
 ---
 
@@ -20,9 +20,10 @@
 | Area | Decision | Rationale |
 |---|---|---|
 | Site generator | **Hugo** (pinned version) | Single binary, no `node_modules`, built-in i18n, stable for years |
-| Source of truth | **Git repository on GitHub** (department organization) | Full history, every change reversible, free CI |
+| Source of truth | **Git repository on GitHub** — initially `SashoG/quantum-site` (maintainer's account, public); transfer to a department organization later | Full history, every change reversible, free CI |
 | Editing UI | **Pages CMS, hosted** at app.pagescms.org | Colleagues invited by email, no GitHub account needed; edits become commits |
-| Build | **GitHub Actions** | Builds on every commit; nothing to install on the server |
+| Build | **GitHub Actions**, first-party actions only, pinned by commit SHA | Builds on every commit; nothing to install on the server |
+| Staging | **GitHub Pages** preview built from `main`, `noindex` | Review before go-live, independent of the faculty server |
 | Hosting | **Faculty of Physics server, Apache**, static files only | Provided by the faculty; HTTPS under `phys.uni-sofia.bg` |
 | Deploy | **Pull model**: server cron pulls the built site from a `deploy` branch | Needs only outbound HTTPS from the server; firewall-friendly |
 | Server config | **vhost only, `.htaccess` disabled** (`AllowOverride None`) | Repository content can never change server configuration |
@@ -62,7 +63,7 @@ No PHP, CGI, SSI or database.
                       https://quantum.phys.uni-sofia.bg  (static)
 ```
 
-Optional: a staging preview on GitHub Pages / Cloudflare Pages built from `main` for review before go-live.
+Staging preview: the same workflow publishes a second build of `main` to GitHub Pages (https://sashog.github.io/quantum-site/ until the repository is transferred). It is marked `noindex` and its `robots.txt` disallows everything.
 
 ## 5. Pages CMS hosting
 
@@ -82,7 +83,8 @@ Optional: a staging preview on GitHub Pages / Cloudflare Pages built from `main`
 
 ```
 quantum-site/
-├── .github/workflows/deploy.yml     # allowlist check + build + publish to `deploy`
+├── .github/workflows/build.yml      # file checks + build + staging (Pages) + publish to `deploy`
+├── .gitattributes                   # LF line endings everywhere
 ├── .pages.yml                       # Pages CMS configuration
 ├── hugo.toml                        # site + language configuration
 ├── ARCHITECTURE.md
@@ -113,10 +115,12 @@ quantum-site/
 │   ├── quantum-vhost.conf           # reference Apache fragment for the sysadmin
 │   └── server-pull.sh               # deploy script for the faculty server
 └── scripts/
-    └── check-files.sh               # CI allowlist / symlink check
+    └── check-files.sh               # CI file policy check (sources and build output)
 ```
 
 There is **no `.htaccess`** in the repository; Apache ignores it anyway (`AllowOverride None`).
+
+Templates follow the Hugo ≥ 0.146 layout: `layouts/baseof.html`, `home.html`, `section.html`, `page.html`, per-section overrides (`layouts/people/page.html`, …), partials in `layouts/_partials/`.
 
 ## 7. Content model
 
@@ -148,7 +152,7 @@ Body: biography, selected publications.
 title: "Матрична оптика"
 lecturers: ["gaydardzhiev"]        # references to person slugs
 programme: ["Фотоника и лазерна физика"]
-type: "избираема"                  # задължителна / избираема / факултативна
+course_type: "избираема"           # задължителна / избираема / факултативна
 semester: "зимен"
 ects: 0
 materials:
@@ -157,6 +161,8 @@ materials:
     date: 2026-10-01
 ```
 Body: syllabus, assessment, literature.
+
+`type` is a reserved Hugo front-matter key (it selects the layout), so the course kind is stored as `course_type`.
 
 The person page lists all courses whose `lecturers` contain the person's slug (Hugo `where` query) — this is the lecturer's personal space.
 
@@ -203,7 +209,7 @@ media:
     label: Снимки
     input: assets/images
     output: /images
-    extensions: [jpg, jpeg, png, webp, svg]
+    extensions: [jpg, jpeg, png, webp]   # no svg (§10)
 
 content:
   - name: people-bg
@@ -274,69 +280,46 @@ The `extensions` lists are a UI convenience only. **Enforcement happens in CI** 
 
 If the repository approaches its budget, move old course materials to a yearly archive folder on the faculty server and link to them.
 
+**Video from the old site.** The legacy site holds ≈ 374 MB of video (mostly `photonics/AV/`, largest file 94 MB). It is **not** migrated into the repository. Options, decision pending: a department YouTube channel (separate task) or an archive folder on the faculty server outside the deploy (depends on §16 #4).
+
 ## 11. Build and deploy
 
-### 11.1 CI allowlist check — `scripts/check-files.sh`
+### 11.1 CI file policy check — `scripts/check-files.sh`
 
-Runs before every build; the build fails on any violation, so nothing reaches the server.
+The script in the repository is the source of truth. It runs **before** the build on tracked files and **after** the build on the output; any violation fails the job, so nothing reaches the server.
 
-```sh
-#!/bin/sh
-set -eu
-fail=0
+Source checks (`sh scripts/check-files.sh`):
 
-# 1. No symlinks anywhere in the repository
-if git ls-files -s | awk '$1 == "120000"' | grep -q .; then
-  echo "ERROR: symlinks are not allowed"; fail=1
-fi
+| # | Rule |
+|---|---|
+| 1 | No symlinks (git mode `120000`) and no submodules (`160000`) |
+| 2 | No server-side or server-config files anywhere (`.htaccess`, `.htpasswd`, `php*`, `phtml`, `phar`, `cgi`, `pl`, `py`, `rb`, `sh`, `shtml`, `exe`, `bat`, `cmd`, `ps1`), except `scripts/*.sh` and `server/*.sh` |
+| 3 | `static/materials/`: pdf, zip, docx, pptx, xlsx, mp4, webm, jpg, jpeg, png only |
+| 4 | `assets/images/`: jpg, jpeg, png, webp only (no svg) |
+| 5 | `content/`: Markdown only (no page-bundle html/svg/js) |
+| 6 | Rest of `static/`: ico, png, jpg, webp, txt, woff2 only |
+| 7 | No file over 25 MB |
+| 8 | Warning only: material file names should be lowercase Latin, digits, hyphens |
 
-# 2. Materials: allowlisted extensions only
-bad=$(find static/materials -type f \
-  ! -iregex '.*\.\(pdf\|zip\|docx\|pptx\|xlsx\|mp4\|webm\|jpg\|jpeg\|png\)$' || true)
-[ -n "$bad" ] && { echo "ERROR: disallowed files:"; echo "$bad"; fail=1; }
+Output checks (`sh scripts/check-files.sh --output public`): no symlinks, no server-side/config files, allowlisted types under `/materials`, no file over 25 MB.
 
-# 3. No server-side or config files anywhere in static/
-bad=$(find static -type f \( -iname '*.php*' -o -iname '.htaccess' -o -iname '*.cgi' \
-  -o -iname '*.shtml' -o -iname '*.sh' \) || true)
-[ -n "$bad" ] && { echo "ERROR: forbidden files:"; echo "$bad"; fail=1; }
+Additionally, raw HTML in Markdown is not rendered (`markup.goldmark.renderer.unsafe = false`), so editors cannot inject `<script>`, `<iframe>` or forms through page text.
 
-# 4. Size limit per file (25 MB)
-big=$(find static -type f -size +25M || true)
-[ -n "$big" ] && { echo "ERROR: files over 25 MB:"; echo "$big"; fail=1; }
+### 11.2 GitHub Actions — `.github/workflows/build.yml`
 
-exit $fail
-```
+Triggers: push to `main`, pull requests (build and checks only), manual run.
 
-### 11.2 GitHub Actions — `.github/workflows/deploy.yml` (sketch)
+| Job | Permissions | Steps |
+|---|---|---|
+| `build` | `contents: write` | checkout (`persist-credentials: false`) → `check-files.sh` → install Hugo → production build (`https://quantum.phys.uni-sofia.bg/`) → staging build (Pages URL, `--environment staging`) → `check-files.sh --output` on both → upload staging artifact → force-push production build as a single commit to branch `deploy` |
+| `staging` | `pages: write`, `id-token: write` | deploy the staging artifact to GitHub Pages |
 
-Third-party actions are **pinned by commit SHA**, not by tag.
+Supply chain:
+- **No third-party actions.** Hugo is downloaded from the official GitHub release and verified against a pinned SHA-256; the `deploy` branch is published with plain `git push` using `GITHUB_TOKEN`.
+- First-party actions are pinned by commit SHA: `actions/checkout` v7.0.1, `actions/upload-pages-artifact` v5.0.0, `actions/deploy-pages` v5.0.1.
+- Hugo version: **0.170.1 extended** (`HUGO_VERSION` / `HUGO_SHA256` in the workflow). Upgrades are deliberate: bump both values, check the build locally.
 
-```yaml
-name: build-and-publish
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-permissions:
-  contents: write
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@<sha>            # v4
-      - run: sh scripts/check-files.sh
-      - uses: peaceiris/actions-hugo@<sha>      # v3
-        with:
-          hugo-version: "<pinned version>"
-          extended: true
-      - run: hugo --minify --baseURL https://quantum.phys.uni-sofia.bg/
-      - uses: peaceiris/actions-gh-pages@<sha>  # v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          publish_branch: deploy
-          force_orphan: true                    # deploy branch keeps only the latest build
-```
+One-time repository setting: **Settings → Pages → Source: GitHub Actions**.
 
 ### 11.3 Faculty server — `server/server-pull.sh`
 
@@ -349,18 +332,30 @@ GIT_DIR=/srv/quantum-site.git          # outside docroot
 WORK_TREE=/var/www/quantum             # docroot (confirm with sysadmin)
 export GIT_DIR
 
-git fetch --quiet origin deploy
-if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/deploy)" ]; then
-  git --work-tree="$WORK_TREE" reset --hard --quiet origin/deploy
-  git --work-tree="$WORK_TREE" clean -fdq
+# A bare clone has no remote-tracking refs: fetch explicitly into origin/deploy.
+# `+` because the deploy branch is force-pushed (one commit per build).
+git fetch --quiet origin +refs/heads/deploy:refs/remotes/origin/deploy
+
+# Last commit written to the docroot (empty on first run → full deploy).
+STATE="$GIT_DIR/DEPLOYED"
+new=$(git rev-parse refs/remotes/origin/deploy)
+old=$(cat "$STATE" 2>/dev/null || true)
+
+if [ "$new" != "$old" ]; then
+  git --work-tree="$WORK_TREE" reset --hard --quiet "$new"
+  # Keep ACME (Let's Encrypt) webroot challenges if the sysadmin uses them.
+  git --work-tree="$WORK_TREE" clean -fdq -e /.well-known/
+  echo "$new" > "$STATE"
 fi
 ```
+
+Rev 2 of this script compared `HEAD` with `origin/deploy`; a `--bare` clone has no `origin/deploy` ref, and right after cloning `HEAD` already equals the fetched commit, so the first run would never populate the docroot. The version above (tested against a mock remote: first deploy, force-pushed update, cleanup of stray files, `.well-known/` preserved, no-op run) is in `server/server-pull.sh`.
 
 One-time setup:
 
 ```sh
 git clone --bare --single-branch --branch deploy \
-  https://github.com/<org>/quantum-site.git /srv/quantum-site.git
+  https://github.com/SashoG/quantum-site.git /srv/quantum-site.git   # update after transfer
 git --git-dir=/srv/quantum-site.git config core.symlinks false
 ```
 
@@ -446,8 +441,8 @@ Notes:
 | Symlinks exposing server files | Leak of `/etc/...`, other sites' files | `-FollowSymLinks`, `core.symlinks false`, CI rejects symlinks |
 | XSS / phishing via uploaded html/svg | Same-site subdomain: cookie tossing for `.phys.uni-sofia.bg`, CSRF against other faculty apps, fake login pages on a trusted domain | CI extension allowlist, CSP, `sandbox` CSP on `/materials`, `nosniff` |
 | Malware hosting | Safe Browsing blocklisting can affect the whole domain | Allowlist (no executables), size limits, push notifications to maintainers |
-| Compromised editor account | Defacement / abuse of content | GitHub org 2FA mandatory; Pages CMS logins are as strong as the editor's email; Git history = audit trail, revert in seconds |
-| Supply chain in CI | Malicious build output | Actions pinned by SHA, pinned Hugo version |
+| Compromised editor account | Defacement / abuse of content | 2FA mandatory on every GitHub account with write access (org-wide requirement after transfer); Pages CMS logins are as strong as the editor's email; Git history = audit trail, revert in seconds |
+| Supply chain in CI | Malicious build output | No third-party actions; first-party actions pinned by SHA; Hugo pinned and SHA-256-verified; build output re-checked |
 | Server-side deploy | Lateral movement | Dedicated Unix user, no access to other docroots, cron not as root, read-only deploy key |
 
 Compared with WordPress (PHP + plugins → server-side code execution, a frequent compromise vector on university servers), the worst realistic case here is defaced or abused content on one subdomain, not a server breach.
@@ -466,12 +461,13 @@ Compared with WordPress (PHP + plugins → server-side code execution, a frequen
 
 | Role | Who | Access |
 |---|---|---|
-| Owner / maintainer | Site maintainer + at least one more owner | GitHub org owner; code, layouts, CI |
+| Owner / maintainer | Site maintainer + at least one more owner | Repository owner (`SashoG` until transfer to a department organization, then org owners); code, layouts, CI |
 | Editor | Selected colleagues | Pages CMS: all collections (news, research, static pages) |
 | Lecturer | Every lecturer | Pages CMS: own profile, courses, uploads to own materials folder (by convention) |
 
 - Every save in Pages CMS is a commit with the editor's name.
 - Maintainers receive GitHub notifications for every push to `main`.
+- Repository transfer to a department organization: GitHub redirects the old repository URL; the staging URL changes to `<org>.github.io/quantum-site/`; the server's clone URL (§11.3) and the Pages CMS GitHub App installation must be updated.
 - Per-folder permissions are not enforced technically; the convention "edit only your own space" applies, backed by history and revert.
 
 ## 16. Sysadmin coordination
@@ -484,7 +480,7 @@ Email sent to the faculty sysadmin (Nov 2026) proposing the static approach (ins
 | 1 | Docroot path and Unix user; SSH access for initial setup | Pending |
 | 2 | Outbound HTTPS from the server to github.com | Pending — if no, use push model (§11.3, option 3) |
 | 3 | Cron for the site user (`git pull` at fixed interval) | Pending — if no, system cron entry by sysadmin (§11.3, option 2) |
-| 4 | Disk quota, file size limits (PDFs; short optimized video) | Pending |
+| 4 | Disk quota, file size limits (PDFs; short optimized video; possible archive of ≈ 374 MB legacy video, §10) | Pending |
 | 5 | Caching + security headers in vhost, `AllowOverride None` | Proposed — send §12 fragment |
 | — | HTTPS certificate for `quantum.phys.uni-sofia.bg` | Assumed handled by the faculty as a subdomain of `phys.uni-sofia.bg`; confirm renewal process |
 
@@ -492,9 +488,9 @@ Email sent to the faculty sysadmin (Nov 2026) proposing the static approach (ins
 
 | Phase | Scope |
 |---|---|
-| 0 — Setup | GitHub org + repo, Hugo skeleton, CI with allowlist check, staging preview |
+| 0 — Setup | Repo (`SashoG/quantum-site`), Hugo skeleton, CI with file checks, staging preview — **done** (Rev 3) |
 | 1 — Design | Custom responsive theme; home, people, courses, news layouts |
-| 2 — Migration | Mirror old site (`wget --mirror`), `iconv -f cp1251 -t utf-8` where needed, convert HTML → Markdown with Claude Code, map to content model |
+| 2 — Migration | Mirror of the old site (done), per-file encoding detection (UTF-8 / cp1251 / cp1252 — **not** a blanket `iconv -f cp1251`, see `migration/content-inventory.md` §5), HTML → Markdown with Claude Code, map to content model per `migration/inventory.csv` |
 | 3 — CMS | `.pages.yml`, invite 1–2 pilot lecturers, adjust forms |
 | 4 — Server | Sysadmin answers, vhost fragment applied, deploy script + cron, HTTPS, go-live |
 | 5 — Onboarding | Invite all lecturers, one-page how-to with screenshots; inform department head about Pages CMS data handling |
@@ -502,5 +498,6 @@ Email sent to the faculty sysadmin (Nov 2026) proposing the static approach (ins
 
 ## 18. Revision history
 
+- **Rev 3** — Phase 0 implemented. Repository initially under the maintainer's account `SashoG/quantum-site` (public), transfer to a department organization later (§2, §15). Staging preview on GitHub Pages, `noindex` (§2, §4). Workflow renamed to `build.yml`; no third-party actions, Hugo 0.170.1 downloaded and SHA-256-verified, first-party actions pinned by SHA (§11.2). File policy check extended to `content/`, `assets/images/`, rest of `static/` and to the build output; raw HTML in Markdown disabled (§11.1). Course field `type` renamed to `course_type` (reserved in Hugo, §7.2). SVG removed from the Pages CMS images media (§9). `server-pull.sh` fixed: explicit fetch into `origin/deploy`, deployed-commit state file, `.well-known/` kept on clean (§11.3). Legacy video (≈ 374 MB) not migrated into the repository, decision pending (§10, §16). Phase 2: content inventory added (`migration/`), per-file encoding rule replaces blanket cp1251 conversion (§17).
 - **Rev 2** — Apache confirmed; `.htaccess` dropped in favour of vhost-only config (`AllowOverride None`); full Apache reference fragment (caching, security headers, static-only execution policy); expanded security model incl. same-site subdomain risks, symlinks, CI allowlist; Pages CMS hosting and data location documented; short optimized video allowed; cron fallbacks; sysadmin question status.
 - **Rev 1** — Initial architecture: Hugo + GitHub + Pages CMS + pull deploy.
