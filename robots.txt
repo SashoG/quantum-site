@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://quantum.phys.uni-sofia.bg/sitemap.xml
