@@ -1,0 +1,52 @@
+# Hugo configuration — Quantum Electronics Department website.
+# Built with a pinned Hugo version (see .github/workflows/build.yml).
+
+baseURL = 'https://quantum.phys.uni-sofia.bg/'
+defaultContentLanguage = 'bg'
+defaultContentLanguageInSubdir = false   # BG at /, EN at /en/
+enableRobotsTXT = true
+disableKinds = ['taxonomy', 'term']
+timeZone = 'Europe/Sofia'
+
+[languages]
+  [languages.bg]
+    contentDir = 'content/bg'
+    label = 'Български'
+    locale = 'bg-BG'
+    title = 'Катедра „Квантова електроника“'
+    weight = 1
+    [languages.bg.params]
+      description = 'Катедра „Квантова електроника“, Физически факултет, Софийски университет „Св. Климент Охридски“'
+      university = 'Физически факултет, СУ „Св. Климент Охридски“'
+  [languages.en]
+    contentDir = 'content/en'
+    label = 'English'
+    locale = 'en-US'
+    title = 'Department of Quantum Electronics'
+    weight = 2
+    [languages.en.params]
+      description = 'Department of Quantum Electronics, Faculty of Physics, Sofia University "St. Kliment Ohridski"'
+      university = 'Faculty of Physics, Sofia University'
+
+[markup.goldmark.renderer]
+  # Raw HTML in Markdown is dropped. Editors cannot inject <script>, <iframe>, forms, etc.
+  unsafe = false
+
+[pagination]
+  pagerSize = 10
+
+[imaging]
+  resampleFilter = 'Lanczos'
+  [imaging.jpeg]
+    quality = 80
+  [imaging.webp]
+    quality = 80
+
+[services.rss]
+  limit = 20
+
+[outputs]
+  home = ['html', 'rss']
+  section = ['html']
+  page = ['html']
+  # news/_index.md adds 'rss' for the news feed

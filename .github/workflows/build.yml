@@ -1,0 +1,101 @@
+# Build and publish (ARCHITECTURE.md §11).
+#
+#   main ──► file policy check ──► hugo build ──┬─► GitHub Pages   (staging preview, noindex)
+#                                                └─► branch `deploy` (production build, pulled by the faculty server)
+#
+# Only first-party GitHub actions are used, pinned by commit SHA.
+# Hugo is downloaded from the official release and verified by SHA-256.
+
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  HUGO_VERSION: "0.170.1"
+  HUGO_SHA256: "841a5462853aefc9942e4de1e8a5d75584b6a5181941e6ad3f1d745190e03cd8"  # hugo_extended_0.170.1_linux-amd64.tar.gz
+  PRODUCTION_URL: "https://quantum.phys.uni-sofia.bg/"
+  TZ: Europe/Sofia
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write          # push to the `deploy` branch
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Check repository files
+        run: sh scripts/check-files.sh
+
+      - name: Install Hugo ${{ env.HUGO_VERSION }}
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/hugo.tar.gz" \
+            "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.tar.gz"
+          echo "${HUGO_SHA256}  $RUNNER_TEMP/hugo.tar.gz" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/hugo"
+          tar -xzf "$RUNNER_TEMP/hugo.tar.gz" -C "$RUNNER_TEMP/hugo" hugo
+          echo "$RUNNER_TEMP/hugo" >> "$GITHUB_PATH"
+
+      - name: Build production
+        run: hugo --minify --environment production --baseURL "$PRODUCTION_URL" --destination public
+
+      - name: Build staging preview
+        run: |
+          hugo --minify --environment staging \
+            --baseURL "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" \
+            --destination public-staging
+
+      - name: Check build output
+        run: |
+          sh scripts/check-files.sh --output public
+          sh scripts/check-files.sh --output public-staging
+
+      - name: Upload staging preview
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: public-staging
+
+      - name: Publish production build to `deploy` branch
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd public
+          git init -q -b deploy
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Build ${GITHUB_SHA}"
+          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          git -c http.extraheader="AUTHORIZATION: basic ${auth}" \
+            push -q --force "https://github.com/${GITHUB_REPOSITORY}.git" deploy
+
+  staging:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

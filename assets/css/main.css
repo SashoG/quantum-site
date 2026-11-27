@@ -1,0 +1,151 @@
+/* Quantum Electronics Department — base styles (placeholder theme, refined in phase 1). */
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1b1f24;
+  --color-muted: #5b6470;
+  --color-accent: #0b4f8a;
+  --color-accent-contrast: #ffffff;
+  --color-border: #dde2e8;
+  --color-surface: #f5f7fa;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", Arial, sans-serif;
+  --radius: 6px;
+  --space: 1rem;
+  --max-width: 72rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #12161b;
+    --color-text: #e6e9ed;
+    --color-muted: #a3acb8;
+    --color-accent: #7cb7ff;
+    --color-accent-contrast: #0b1520;
+    --color-border: #2a313a;
+    --color-surface: #1a2027;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+a { color: var(--color-accent); text-underline-offset: 0.15em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+
+img { max-width: 100%; height: auto; }
+
+h1, h2, h3 { line-height: 1.25; }
+h1 { font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem); }
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space);
+}
+
+main.container { padding-block: calc(var(--space) * 2); min-height: 60vh; }
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 0;
+  padding: 0.5rem 1rem;
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+  z-index: 10;
+}
+.skip-link:focus { left: 0; }
+
+.muted { color: var(--color-muted); }
+
+/* Header */
+.site-header { border-bottom: 1px solid var(--color-border); background: var(--color-surface); }
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space);
+  padding-block: var(--space);
+}
+.brand { text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+.brand-title { font-weight: 700; font-size: 1.2rem; }
+.brand-sub { font-size: 0.9rem; color: var(--color-muted); }
+
+.site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space); }
+.site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; }
+.site-nav a { text-decoration: none; padding-block: 0.25rem; }
+.site-nav a[aria-current="page"] { font-weight: 700; border-bottom: 2px solid currentColor; }
+.lang-switch { border-left: 1px solid var(--color-border); padding-left: var(--space) !important; }
+
+.nav-toggle {
+  font: inherit;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 48rem) {
+  .js .site-nav { display: none; width: 100%; flex-direction: column; align-items: flex-start; }
+  .js .site-nav.is-open { display: flex; }
+  .site-nav ul { flex-direction: column; }
+  .lang-switch { border-left: 0; padding-left: 0 !important; }
+}
+@media (min-width: 48.01rem) {
+  .nav-toggle { display: none; }
+}
+
+/* Lists and cards */
+.card-list, .people-list, .materials, .inline-list { list-style: none; padding: 0; }
+.card-list { display: grid; gap: var(--space); grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); }
+.card {
+  padding: var(--space);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+.card h2, .card h3 { margin-top: 0; font-size: 1.15rem; }
+
+.people-list { display: grid; gap: var(--space); grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+.person-card { display: flex; gap: var(--space); align-items: center; }
+.person-card h3 { margin: 0; font-size: 1.05rem; }
+.person-card p { margin: 0.25rem 0 0; }
+.person-card .person-photo { width: 80px; height: 80px; }
+.person-photo { border-radius: 50%; object-fit: cover; }
+.people-list--former .person-card { opacity: 0.85; }
+
+.person-header { display: flex; flex-wrap: wrap; gap: calc(var(--space) * 1.5); align-items: flex-start; }
+.person-header h1 { margin-top: 0; }
+
+.contact, .meta { display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 1rem; }
+.contact dt, .meta dt { font-weight: 600; }
+.contact dd, .meta dd { margin: 0; }
+
+.inline-list { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; }
+.tags li { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 999px; padding: 0.1rem 0.75rem; }
+
+.materials li { padding: 0.5rem 0; border-bottom: 1px solid var(--color-border); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
+
+/* Pagination (Hugo internal template) */
+.pagination { list-style: none; padding: 0; display: flex; gap: 0.5rem; }
+.pagination .active a { font-weight: 700; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-muted); font-size: 0.9rem; }
+.site-footer .container { padding-block: var(--space); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space); }
+.site-footer p { margin: 0; }

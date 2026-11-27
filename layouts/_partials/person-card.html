@@ -1,0 +1,7 @@
+<li class="person-card">
+  {{- partial "person-photo.html" (dict "page" . "width" 160) }}
+  <div>
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ with .Params.position }}<p class="muted">{{ . }}</p>{{ end }}
+  </div>
+</li>

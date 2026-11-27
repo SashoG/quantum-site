@@ -1,0 +1,7 @@
+---
+title: "Новини"
+menus:
+  main:
+    weight: 60
+outputs: [html, rss]
+---

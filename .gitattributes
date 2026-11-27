@@ -1,0 +1,15 @@
+# Normalize line endings: LF in the repository and in working trees (scripts run on Linux).
+* text=auto eol=lf
+*.pdf  binary
+*.zip  binary
+*.docx binary
+*.pptx binary
+*.xlsx binary
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.webp binary
+*.mp4  binary
+*.webm binary
+*.woff2 binary
+*.ico  binary

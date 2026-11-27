@@ -1,0 +1,33 @@
+{{ define "main" }}
+<article class="course">
+  <h1>{{ .Title }}</h1>
+  <dl class="meta">
+    {{- with .Params.lecturers }}
+    <dt>{{ i18n "lecturers" }}</dt>
+    <dd>
+      {{- range $i, $slug := . }}{{ if $i }}, {{ end }}
+        {{- with site.GetPage (printf "/people/%s" $slug) }}<a href="{{ .RelPermalink }}">{{ .Title }}</a>{{ else }}{{ $slug }}{{ end }}
+      {{- end }}
+    </dd>
+    {{- end }}
+    {{ with .Params.programme }}<dt>{{ i18n "programme" }}</dt><dd>{{ delimit . ", " }}</dd>{{ end }}
+    {{ with .Params.course_type }}<dt>{{ i18n "course_type" }}</dt><dd>{{ . }}</dd>{{ end }}
+    {{ with .Params.semester }}<dt>{{ i18n "semester" }}</dt><dd>{{ . }}</dd>{{ end }}
+    {{ with .Params.ects }}<dt>ECTS</dt><dd>{{ . }}</dd>{{ end }}
+  </dl>
+
+  {{ .Content }}
+
+  {{- with .Params.materials }}
+  <h2>{{ i18n "materials" }}</h2>
+  <ul class="materials">
+    {{- range sort . "date" }}
+    <li>
+      <a href="{{ strings.TrimPrefix "/" .file | relURL }}">{{ .title }}</a>
+      {{ with .date }}<span class="muted">{{ partial "date.html" (time.AsTime .) }}</span>{{ end }}
+    </li>
+    {{- end }}
+  </ul>
+  {{- end }}
+</article>
+{{ end }}

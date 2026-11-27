@@ -1,0 +1,4 @@
+{{- /* Usage: partial "date.html" .Date */ -}}
+{{- if not .IsZero -}}
+<time datetime="{{ .Format "2006-01-02" }}">{{ . | time.Format ":date_long" }}</time>
+{{- end -}}

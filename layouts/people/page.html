@@ -1,0 +1,41 @@
+{{ define "main" }}
+{{- $slug := .File.ContentBaseName }}
+<article class="person">
+  <header class="person-header">
+    {{- partial "person-photo.html" (dict "page" . "width" 240) }}
+    <div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.position }}<p class="muted">{{ . }}</p>{{ end }}
+      <dl class="contact">
+        {{ with .Params.email }}<dt>{{ i18n "email" }}</dt><dd><a href="mailto:{{ . }}">{{ . }}</a></dd>{{ end }}
+        {{ with .Params.office }}<dt>{{ i18n "office" }}</dt><dd>{{ . }}</dd>{{ end }}
+        {{ with .Params.phone }}<dt>{{ i18n "phone" }}</dt><dd>{{ . }}</dd>{{ end }}
+      </dl>
+      {{- with .Params.links }}
+      <ul class="inline-list">
+        {{ with .scholar }}<li><a href="{{ . }}" rel="noopener">Google Scholar</a></li>{{ end }}
+        {{ with .orcid }}<li><a href="{{ . }}" rel="noopener">ORCID</a></li>{{ end }}
+      </ul>
+      {{- end }}
+    </div>
+  </header>
+
+  {{- with .Params.research_interests }}
+  <h2>{{ i18n "research_interests" }}</h2>
+  <ul class="inline-list tags">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+  {{- end }}
+
+  {{ .Content }}
+
+  {{- /* Lecturer's personal space: every course that lists this person. */}}
+  {{- $courses := where (where site.RegularPages "Section" "courses") "Params.lecturers" "intersect" (slice $slug) }}
+  {{- with $courses }}
+  <h2>{{ i18n "courses" }}</h2>
+  <ul class="card-list">
+    {{- range .ByTitle }}
+    <li class="card"><h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+</article>
+{{ end }}

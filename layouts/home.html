@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section class="intro">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+</section>
+
+{{- $news := where site.RegularPages "Section" "news" }}
+{{- with first 3 $news.ByDate.Reverse }}
+<section class="latest-news">
+  <h2>{{ i18n "latest_news" }}</h2>
+  <ul class="card-list">
+    {{- range . }}
+    <li class="card">
+      <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+      {{ partial "date.html" .Date }}
+      {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+    </li>
+    {{- end }}
+  </ul>
+  {{ with site.GetPage "/news" }}<p><a href="{{ .RelPermalink }}">{{ i18n "all_news" }} →</a></p>{{ end }}
+</section>
+{{- end }}
+{{ end }}

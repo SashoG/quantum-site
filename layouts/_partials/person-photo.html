@@ -1,0 +1,13 @@
+{{- /*
+  Photo from assets/images (front matter: photo: "/images/people/<slug>.jpg").
+  Resized by Hugo; originals are never published as-is.
+  Usage: partial "person-photo.html" (dict "page" . "width" 160)
+*/ -}}
+{{- $p := .page }}
+{{- with $p.Params.photo }}
+  {{- with resources.Get (strings.TrimPrefix "/" .) }}
+    {{- $img := .Fill (printf "%dx%d webp" $.width $.width) }}
+    {{- $img2x := .Fill (printf "%dx%d webp" (mul $.width 2) (mul $.width 2)) }}
+<img class="person-photo" src="{{ $img.RelPermalink }}" srcset="{{ $img.RelPermalink }} 1x, {{ $img2x.RelPermalink }} 2x" width="{{ $.width }}" height="{{ $.width }}" alt="{{ $p.Title }}" loading="lazy">
+  {{- end }}
+{{- end }}

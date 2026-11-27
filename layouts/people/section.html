@@ -1,0 +1,17 @@
+{{ define "main" }}
+<h1>{{ .Title }}</h1>
+{{ .Content }}
+{{- $active := where .Pages "Params.active" "ne" false }}
+{{- $former := where .Pages "Params.active" false }}
+{{- with $active }}
+<ul class="people-list">
+  {{- range .ByWeight }}{{ partial "person-card.html" . }}{{ end }}
+</ul>
+{{- end }}
+{{- with $former }}
+<h2>{{ i18n "former_staff" }}</h2>
+<ul class="people-list people-list--former">
+  {{- range .ByTitle }}{{ partial "person-card.html" . }}{{ end }}
+</ul>
+{{- end }}
+{{ end }}
